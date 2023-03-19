@@ -29,6 +29,25 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    "& h4": {
+      color: "black",
+      alignItems: "center",
+      marginBottom: "2rem",
+    },
+    "& p": {
+      color: "black",
+      alignItems: "center",
+    },
+    "& span": {
+      color: "black",
+      fontSize: "10px",
+    },
+    "& #submitBtn, & #submitBtn:hover": {
+      backgroundColor: "#00337C",
+    },
+    "& a": {
+      textDecoration: "none",
+    },
   },
 
   box1: {
@@ -36,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       borderRadius: "1rem",
       height: "70%",
-      marginTop:'-50%'
+      marginTop: "-50%",
     },
     width: "40%",
     height: "80%",
@@ -59,6 +78,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   customTextField: {
+    [theme.breakpoints.down("md")]: {
+      "& label":{
+        fontSize:'12px'
+      }
+    },
     "& fieldset": {
       borderColor: "#567189",
       color: "#567189",
@@ -75,19 +99,9 @@ const useStyles = makeStyles((theme) => ({
 
   customCheckbox: {
     alignSelf: "self-end",
-    "& span": {
-      color: "black",
-      fontSize: "10px",
-      textAlign: "right",
-    },
     "& svg": {
       width: "16px",
       height: "16px",
-    },
-  },
-  smallText: {
-    "& span": {
-      fontSize: "10px",
     },
   },
 }));
@@ -108,11 +122,7 @@ function Login(props) {
           alignItems="center"
           spacing={2}
         >
-          <Typography
-            variant="h4"
-            component="h4"
-            sx={{ color: "black", alignItems: "center", marginBottom: "2rem" }}
-          >
+          <Typography variant="h4" component="h4">
             WELCOME BACK
           </Typography>
           <FormControl
@@ -154,45 +164,29 @@ function Login(props) {
             control={<Checkbox />}
             label="Remember Me"
           />
-          <Button fullWidth variant="contained">
+          <Button fullWidth variant="contained" id="submitBtn">
             submit
           </Button>
-          <Typography
-            variant="p"
-            component="p"
-            sx={{ color: "black", alignItems: "center" }}
-          >
+          <Typography variant="p" component="p">
             or continue with:
           </Typography>
           <Stack direction="row" spacing={2}>
             <img src={google} width={25} alt="google" />
             <img src={facebook} width={25} alt="facebook" />
           </Stack>
-          <Stack direction="row" spacing={1} className={classes.smallText}>
-            <Link href="/register" sx={{ textDecoration: "none" }}>
-              <Typography
-                variant="span"
-                component="span"
-                sx={{ color: "black", alignItems: "center" }}
-              >
+          <Stack direction="row" spacing={1}>
+            <Link href="/register">
+              <Typography variant="span" component="span">
                 Forget Password
               </Typography>
             </Link>
-            <Link href="/register" sx={{ textDecoration: "none" }}>
-              <Typography
-                variant="span"
-                component="span"
-                sx={{ color: "black", alignItems: "center" }}
-              >
+            <Link href="/register">
+              <Typography variant="span" component="span">
                 |
               </Typography>
             </Link>
-            <Link href="/register" sx={{ textDecoration: "none" }}>
-              <Typography
-                variant="span"
-                component="span"
-                sx={{ color: "black", alignItems: "center" }}
-              >
+            <Link href="/register">
+              <Typography variant="span" component="span">
                 Create an Account
               </Typography>
             </Link>

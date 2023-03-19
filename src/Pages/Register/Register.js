@@ -9,7 +9,7 @@ import {
   OutlinedInput,
   Stack,
   Typography,
-  Link
+  Link,
 } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import google from "../../asset/google.png";
@@ -28,6 +28,26 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     "& span": {
       fontSize: "10px",
+      color: "black",
+    },
+    "& h4": {
+      color: "black",
+      alignItems: "center",
+      marginBottom: "2rem",
+    },
+    "& p": {
+      color: "black",
+      alignItems: "center",
+    },
+    "& #submitBtn, & #submitBtn:hover": {
+      backgroundColor: "#00337C",
+    },
+    "& a": {
+      textDecoration: "none",
+    },
+    "& #customStack": {
+      width: "100%",
+      justifyContent: "space-between !important",
     },
   },
 
@@ -36,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       borderRadius: "1rem",
       height: "70%",
-      marginTop:'-50%'
+      marginTop: "-50%",
     },
     width: "40%",
     height: "90%",
@@ -59,6 +79,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   customTextField: {
+    [theme.breakpoints.down("md")]: {
+      "& label":{
+        fontSize:'12px'
+      }
+    },
     "& fieldset": {
       borderColor: "#567189",
       color: "#567189",
@@ -91,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 function Register(props) {
   const classes = useStyles();
   return (
@@ -102,18 +128,10 @@ function Register(props) {
           alignItems="center"
           spacing={2}
         >
-          <Typography
-            variant="h4"
-            component="h4"
-            sx={{ color: "black", alignItems: "center", marginBottom: "2rem" }}
-          >
+          <Typography variant="h4" component="h4">
             CREATE AN ACCOUNT
           </Typography>
-          <Stack
-            direction="row"
-            space={3}
-            sx={{ width: "100%", justifyContent: "space-between !important" }}
-          >
+          <Stack direction="row" space={3} id="customStack">
             <FormControl
               fullWidth
               variant="outlined"
@@ -150,11 +168,7 @@ function Register(props) {
             <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
             <OutlinedInput id="outlined-adornment-email" label="Email" />
           </FormControl>
-          <Stack
-            direction="row"
-            space={3}
-            sx={{ width: "100%", justifyContent: "space-between !important" }}
-          >
+          <Stack direction="row" space={3} id="customStack">
             <FormControl
               fullWidth
               variant="outlined"
@@ -191,27 +205,18 @@ function Register(props) {
             control={<Checkbox />}
             label="Remember Me"
           />
-          <Button fullWidth variant="contained">
+          <Button fullWidth variant="contained" id="submitBtn">
             submit
           </Button>
-          <Typography
-            variant="p"
-            component="p"
-            sx={{ color: "black", alignItems: "center" }}
-          >
+          <Typography variant="p" component="p">
             or sign up with:
           </Typography>
           <Stack direction="row" spacing={2}>
             <img src={google} width={25} alt="google" />
             <img src={facebook} width={25} alt="facebook" />
           </Stack>
-          <Link href="/login" sx={{ textDecoration: 'none' }}>
-            <Typography
-              variant="span"
-              component="span"
-              sx={{ color: "black", alignItems: "center" }}
-              className={classes.smallText}
-            >
+          <Link href="/login">
+            <Typography variant="span" component="span">
               Already have an account? Log in
             </Typography>
           </Link>
