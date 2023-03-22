@@ -22,17 +22,53 @@ import { styled, alpha } from "@mui/material/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    [theme.breakpoints.down("md")]: {
+      fontSize: "10px",
+    },
     width: "100vh",
     backgroundColor: "red",
+    "& #logoSection": {
+      display: "flex",
+      justifyContent: "start",
+      alignSelf: "center",
+      paddingLeft:'0px',
+      "& img": {
+        [theme.breakpoints.down("md")]: {
+          display: "none",
+        },
+      },
+    },
     "& h6": {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "10px",
+      },
       fontFamily: "'Roboto Mono', monospace",
       fontStyle: "italic",
       fontWeight: "bold",
       color: "#011b47",
     },
     "& #profileSection": {
+      
       display: "flex",
       justifyContent: "end",
+      "& .MuiAvatar-circular":{
+        width:40,
+        height:40,
+        [theme.breakpoints.down("md")]: {
+          width:30,
+          height:30
+        }
+        
+      }
+    },
+    "& #optionSection": {
+      display: "flex",
+      justifyContent: "space-evenly",
+      "& p": {
+        fontFamily: "'Roboto Mono', monospace",
+        fontWeight: "bold",
+        color: "#011b47",
+      },
     },
   },
   customToolbar: {
@@ -53,6 +89,9 @@ const SearchField = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
     width: "auto",
+  },
+  [theme.breakpoints.down("md")]: {
+    display: "none",
   },
 }));
 
@@ -77,7 +116,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     [theme.breakpoints.up("sm")]: {
       width: "12ch",
       "&:focus": {
-        width: "20ch",
+        width: "30ch",
       },
     },
   },
@@ -95,16 +134,16 @@ function Dashboard(props) {
       <Container maxWidth="xl" sx={{ backgroundColor: "#A8D1DA" }}>
         <Toolbar className={classes.customToolbar}>
           <Grid container spacing={2}>
-            <Grid item xs={2}>
+            <Grid item xs={2} id="logoSection">
               <Stack direction="row">
-                <img src={clock} width={40} alt="clock" />
+                <img src={clock} width={40} alt="clock" id="logo" />
                 <Typography variant="h6" component="h6">
                   T'IMES
                 </Typography>
               </Stack>
             </Grid>
-            <Grid item xs={6}>
-              <Stack direction="row">
+            <Grid item xs={6} sx={{ alignSelf: "center" }}>
+              <Stack direction="row" id="optionSection">
                 <Typography variant="p" component="p">
                   Your Work
                 </Typography>
