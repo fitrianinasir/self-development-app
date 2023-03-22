@@ -17,6 +17,7 @@ import { makeStyles } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import google from "../../asset/google.png";
 import facebook from "../../asset/facebook.png";
+import image from "../../asset/time-management.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
       color: "black",
       alignItems: "center",
       marginBottom: "2rem",
+      fontFamily: "Lexend, sans-serif"
+    },
+    "& #headerText": {
+      color: "black",
+      fontSize: "1.5rem",
+      alignItems: "center",
+      fontFamily: "Merriweather Sans, sans-serif"
     },
     "& p": {
       color: "black",
@@ -79,9 +87,9 @@ const useStyles = makeStyles((theme) => ({
 
   customTextField: {
     [theme.breakpoints.down("md")]: {
-      "& label":{
-        fontSize:'12px'
-      }
+      "& label": {
+        fontSize: "12px",
+      },
     },
     "& fieldset": {
       borderColor: "#567189",
@@ -164,7 +172,7 @@ function Login(props) {
             control={<Checkbox />}
             label="Remember Me"
           />
-          <Button fullWidth variant="contained" id="submitBtn">
+          <Button fullWidth variant="contained" id="submitBtn" href="/dashboard">
             submit
           </Button>
           <Typography variant="p" component="p">
@@ -193,7 +201,20 @@ function Login(props) {
           </Stack>
         </Stack>
       </Box>
-      <Box className={classes.box2}>BOX2</Box>
+      <Box className={classes.box2}>
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ height:'100%' }}
+          spacing={2}
+        >
+          <Typography variant="h3" component="h3" id="headerText">
+            Glad to see you again!
+          </Typography>
+          <img src={image} width={300} alt="time-management" />
+        </Stack>
+      </Box>
     </Box>
   );
 }

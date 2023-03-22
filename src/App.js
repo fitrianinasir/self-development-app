@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './Pages/Login/Login.js'
 import Register from './Pages/Register/Register'
-
+import Dashboard from "./Pages/Dashboard/Dashboard.js";
 import CssBaseline from '@mui/material/CssBaseline'
 
 function App() {
@@ -13,6 +13,10 @@ function App() {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
     },
   ]);
 
