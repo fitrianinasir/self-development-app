@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Link,
   ListItemIcon,
   MenuItem,
   MenuList,
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     display: "flex",
     color: "#918e8d",
+    "& a": {
+      color: "#918e8d",
+    },
     "& p": {
       [theme.breakpoints.down("md")]: {
         display: "none",
@@ -64,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.up("md")]: {
         position: "absolute",
         bottom: "5%",
-        width: "15%",
+        width: "13%",
       },
     },
   },
@@ -84,14 +88,16 @@ function Sidebar(props) {
         </Box>
         <Box>
           <MenuList>
-            <MenuItem>
-              <ListItemIcon>
-                <Widgets fontSize="small" />
-              </ListItemIcon>
-              <Typography variant="p" component="p">
-                Overview
-              </Typography>
-            </MenuItem>
+            <Link href="/dashboard" sx={{ textDecoration: "none" }}>
+              <MenuItem>
+                <ListItemIcon>
+                  <Widgets fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="p" component="p">
+                  Overview
+                </Typography>
+              </MenuItem>
+            </Link>
             <MenuItem>
               <ListItemIcon>
                 <Notifications fontSize="small" />
@@ -106,30 +112,36 @@ function Sidebar(props) {
             <Typography variant="p" component="p" sx={{ paddingLeft: "16px" }}>
               TRACK
             </Typography>
-            <MenuItem>
-              <ListItemIcon>
-                <AutoAwesomeMotion fontSize="small" />
-              </ListItemIcon>
-              <Typography variant="p" component="p">
-                Project Management
-              </Typography>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <AccessTime fontSize="small" />
-              </ListItemIcon>
-              <Typography variant="p" component="p">
-                Habit Tracker
-              </Typography>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <Payment fontSize="small" />
-              </ListItemIcon>
-              <Typography variant="p" component="p">
-                Money Manager
-              </Typography>
-            </MenuItem>
+            <Link href="/project-manager" sx={{ textDecoration: "none" }}>
+              <MenuItem>
+                <ListItemIcon>
+                  <AutoAwesomeMotion fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="p" component="p">
+                  Project Management
+                </Typography>
+              </MenuItem>
+            </Link>
+            <Link href="/habit-tracker" sx={{ textDecoration: "none" }}>
+              <MenuItem>
+                <ListItemIcon>
+                  <AccessTime fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="p" component="p">
+                  Habit Tracker
+                </Typography>
+              </MenuItem>
+            </Link>
+            <Link href="/money-manager" sx={{ textDecoration: "none" }}>
+              <MenuItem>
+                <ListItemIcon>
+                  <Payment fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="p" component="p">
+                  Money Manager
+                </Typography>
+              </MenuItem>
+            </Link>
           </MenuList>
         </Box>
         <Box id="settings">

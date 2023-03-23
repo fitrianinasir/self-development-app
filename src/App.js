@@ -2,6 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './Pages/Login/Login.js'
 import Register from './Pages/Register/Register'
 import Dashboard from "./Pages/Dashboard/Dashboard.js";
+import ProjectManager from "./Pages/ProjectManager/ProjectManager.js";
+import MoneyManager from "./Pages/MoneyManager/MoneyManager.js";
+import HabitTracker from './Pages/HabitTracker/HabitTracker.js'
 import CssBaseline from '@mui/material/CssBaseline'
 
 function App() {
@@ -17,6 +20,18 @@ function App() {
     {
       path: "/dashboard",
       element: <Dashboard />,
+    },
+    {
+      path: "/money-manager",
+      element: <MoneyManager />,
+    },
+    {
+      path: "/habit-tracker",
+      element: <HabitTracker />,
+    },
+    {
+      path: "/project-manager",
+      element: <ProjectManager />,
     },
   ]);
 

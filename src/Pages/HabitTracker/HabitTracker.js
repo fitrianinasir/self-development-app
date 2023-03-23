@@ -11,14 +11,14 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem",
   },
 }));
-function Dashboard(props) {
+function HabitTracker(props) {
   const classes = useStyles();
   return (
     <Stack direction="row">
       <Sidebar />
-      <Box className={classes.root}>OVERVIEW</Box>
+      <Box className={classes.root}>Habit Tracker</Box>
     </Stack>
   );
 }
 
-export default Dashboard;
+export default HabitTracker;
