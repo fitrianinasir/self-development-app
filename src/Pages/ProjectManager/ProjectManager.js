@@ -41,19 +41,10 @@ const useStyles = makeStyles((theme) => ({
 function ProjectManager(props) {
   const classes = useStyles();
   const [data, setData] = useState(dummy.data);
-  const [starredData, setStarredData] = useState([]);
+  useEffect(() => {}, [data]);
 
-  useEffect(() => {
-  }, [data, starredData]);
-  
-  const updateStar = (id, idx) => {
-    console.log("called");
-    let updatedData = data.map((i) =>
-      i.id === id ? { ...i, starred: !i.starred } : i
-    );
-    setData(updatedData);
-    let pushStarred = [...starredData, updatedData[idx]];
-    setStarredData(pushStarred);
+  const updateStar = (id) => {
+    setData(data.map((i) => (i.id === id ? { ...i, starred: !i.starred } : i)));
   };
   return (
     <Stack direction="row">
@@ -67,38 +58,40 @@ function ProjectManager(props) {
             Starred Board
           </Typography>
           <Grid container spacing={2}>
-            {starredData.map((el, index) => (
-              <Grid item xs={3} key={el.id}>
-                <Card sx={{ minWidth: 275, minHeight: 500 }}>
-                  <CardContent>
-                    <Typography variant="p" component="p">
-                      {el.title}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                      {el.status}
-                    </Typography>
-                    <Box id="starContainer">
-                      {el.starred ? (
-                        <IconButton
+            {data.map((el, index) => {
+              if (el.starred) {
+                return (
+                  <Grid item xs={3} key={el.id}>
+                    <Card sx={{ minWidth: 275, minHeight: 500 }}>
+                      <CardContent>
+                        <Typography variant="p" component="p">
+                          {el.title}
+                        </Typography>
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                          {el.status}
+                        </Typography>
+                        <Box
+                          id="starContainer"
                           onClick={() => updateStar(el.id, index)}
-                          aria-label="starred"
                         >
-                          <Star id="starred" />
-                        </IconButton>
-                      ) : (
-                        <IconButton>
-                          <StarBorder
-                            id="star"
-                            onClick={() => updateStar(el.id, index)}
-                            aria-label="unstarred"
-                          />
-                        </IconButton>
-                      )}
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
+                          {el.starred ? (
+                            <IconButton aria-label="starred">
+                              <Star id="starred" />
+                            </IconButton>
+                          ) : (
+                            <IconButton>
+                              <StarBorder id="star" aria-label="unstarred" />
+                            </IconButton>
+                          )}
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                )
+              }else{
+                return ""
+              }
+            })}
           </Grid>
           <br />
           <Typography variant="h6" component="h6">
@@ -115,21 +108,14 @@ function ProjectManager(props) {
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                       {el.status}
                     </Typography>
-                    <Box id="starContainer">
+                    <Box id="starContainer" onClick={() => updateStar(el.id)}>
                       {el.starred ? (
-                        <IconButton
-                          onClick={() => updateStar(el.id, index)}
-                          aria-label="starred"
-                        >
+                        <IconButton aria-label="starred">
                           <Star id="starred" />
                         </IconButton>
                       ) : (
                         <IconButton>
-                          <StarBorder
-                            id="star"
-                            onClick={() => updateStar(el.id, index)}
-                            aria-label="unstarred"
-                          />
+                          <StarBorder id="star" aria-label="unstarred" />
                         </IconButton>
                       )}
                     </Box>
