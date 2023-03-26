@@ -3,7 +3,7 @@ import Sidebar from "../../Components/Sidebar/Sidebar";
 import { Card, makeStyles } from "@material-ui/core";
 import { Box, CardContent, Grid, IconButton, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import { Star, StarBorder } from "@mui/icons-material";
+import { Delete, DeleteOutline, Star, StarBorder } from "@mui/icons-material";
 const dummy = require("./dummy.json");
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +35,14 @@ const useStyles = makeStyles((theme) => ({
         color: "#dbba16",
       },
     },
+    "& #deleteContainer": {
+      position: "absolute",
+      top: 8,
+      right: 0,
+      "& svg": {
+        fontSize: "16px",
+      },
+    },
   },
 }));
 
@@ -45,6 +53,13 @@ function ProjectManager(props) {
 
   const updateStar = (id) => {
     setData(data.map((i) => (i.id === id ? { ...i, starred: !i.starred } : i)));
+  };
+
+  const deleteBoard = (idx) => {
+    let removed = data
+    removed.splice(idx, 1);
+    console.log(removed)
+    setData([...removed])
   };
   return (
     <Stack direction="row">
@@ -87,9 +102,9 @@ function ProjectManager(props) {
                       </CardContent>
                     </Card>
                   </Grid>
-                )
-              }else{
-                return ""
+                );
+              } else {
+                return "";
               }
             })}
           </Grid>
@@ -105,6 +120,15 @@ function ProjectManager(props) {
                     <Typography variant="p" component="p">
                       {el.title}
                     </Typography>
+                    <Box
+                      id="deleteContainer"
+                      onClick={() => deleteBoard(index)}
+                    >
+                      <IconButton aria-label="delete">
+                        <DeleteOutline />
+                      </IconButton>
+                    </Box>
+
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                       {el.status}
                     </Typography>
